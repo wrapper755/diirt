@@ -10,7 +10,22 @@ import java.util.List;
  *
  * @author carcassi
  */
-public interface VStringArray extends Array, Alarm, Time, VType {
+public abstract class VStringArray extends Array implements AlarmProvider, TimeProvider {
+    /**
+     * {@inheritDoc }
+     */
     @Override
-    List<String> getData();
+    public abstract List<String> getData();
+    
+    /**
+     * Creates a new VDouble.
+     * 
+     * @param data the value
+     * @param alarm the alarm
+     * @param time the time
+     * @return the new value
+     */
+    public static VStringArray create(final List<String> data, final Alarm alarm, final Time time) {
+        return new IVStringArray(data, null, alarm, time);
+    }
 }

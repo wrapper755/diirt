@@ -5,26 +5,26 @@
 package org.diirt.vtype;
 
 import java.util.List;
+
 import org.diirt.util.array.ListInt;
+import org.diirt.util.array.ListLong;
 
 /**
  *
  * @author carcassi
  */
-class IVStringArray extends IVMetadata implements VStringArray {
+class IVStringArray extends VStringArray {
     
-    private final ListInt sizes;
     private final List<String> data;
+    private final ListInt sizes;
+    private final Alarm alarm;
+    private final Time time;
 
-    public IVStringArray(List<String> data, ListInt sizes, Alarm alarm, Time time) {
-        super(alarm, time);
+    IVStringArray(List<String> data, ListInt sizes, Alarm alarm, Time time) {
         this.data = data;
+        this.alarm = alarm;
+        this.time = time;
         this.sizes = sizes;
-    }
-
-    @Override
-    public List<String> getData() {
-        return data;
     }
 
     @Override
@@ -33,8 +33,18 @@ class IVStringArray extends IVMetadata implements VStringArray {
     }
 
     @Override
-    public String toString() {
-        return VTypeToString.toString(this);
+    public List<String> getData() {
+        return data;
+    }
+
+    @Override
+    public Alarm getAlarm() {
+        return alarm;
+    }
+
+    @Override
+    public Time getTime() {
+        return time;
     }
     
 }

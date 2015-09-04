@@ -12,7 +12,7 @@ import org.diirt.util.array.ListInt;
  * @author carcassi
  */
 class IVLongArray extends VLongArray {
-	private final ListLong data;
+    private final ListLong data;
     private final ListInt sizes;
     private final Alarm alarm;
     private final Time time;
