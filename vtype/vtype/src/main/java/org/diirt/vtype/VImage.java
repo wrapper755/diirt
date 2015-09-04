@@ -37,25 +37,25 @@ package org.diirt.vtype;
  *
  * @author carcassi
  */
-public interface VImage extends VType {
+public abstract class VImage extends VType {
     /**
      * Height of the image in pixels.
      *
      * @return image height
      */
-    public int getHeight();
+    public abstract int getHeight();
 
     /**
      * Width of the image in pixels.
      *
      * @return image width
      */
-    public int getWidth();
+    public abstract int getWidth();
 
     /**
      * Image buffer;
      *
      * @return image buffer
      */
-    public byte[] getData();
+    public abstract byte[] getData();
 }

@@ -9,7 +9,7 @@ package org.diirt.vtype;
  *
  * @author carcassi
  */
-class IVImage implements VImage {
+class IVImage extends VImage {
 
     private final int height;
     private final int width;
