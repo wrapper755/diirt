@@ -11,10 +11,24 @@ package org.diirt.vtype;
  * 
  * @author carcassi
  */
-public interface VByte extends VNumber, VType {
+public abstract class VByte extends VNumber {
+    
     /**
      * {@inheritDoc }
      */
     @Override
-    Byte getValue();
+    public abstract Byte getValue();
+    
+    /**
+     * Creates a new VByte.
+     * 
+     * @param value the value
+     * @param alarm the alarm
+     * @param time the time
+     * @param display the display
+     * @return the new value
+     */
+    public static VByte create(final Byte value, final Alarm alarm, final Time time, final Display display) {
+        return new IVByte(value, alarm, time, display);
+    }
 }

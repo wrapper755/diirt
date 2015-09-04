@@ -7,17 +7,28 @@ package org.diirt.vtype;
 import org.diirt.util.array.ListDouble;
 
 /**
- * Double array with alarm, timestamp, display and control information.
- *
+ * Scalar double array with alarm, timestamp, display and control information.
+ * 
  * @author carcassi
  */
-public interface VDoubleArray extends VNumberArray, VType {
+public abstract class VDoubleArray extends VNumberArray {
     
     /**
      * {@inheritDoc }
-     * @return the data
      */
     @Override
-    ListDouble getData();
+    public abstract ListDouble getData();
     
+    /**
+     * Creates a new VDouble.
+     * 
+     * @param data the value
+     * @param alarm the alarm
+     * @param time the time
+     * @param display the display
+     * @return the new value
+     */
+    public static VDoubleArray create(final ListDouble data, final Alarm alarm, final Time time, final Display display) {
+        return new IVDoubleArray(data, null, alarm, time, display);
+    }
 }

@@ -5,6 +5,10 @@
 package org.diirt.vtype;
 
 import java.text.NumberFormat;
+import java.util.Objects;
+import org.diirt.util.stats.Range;
+import org.diirt.util.stats.Ranges;
+import org.diirt.util.text.NumberFormats;
 
 /**
  * Limit and unit information needed for display and control.
@@ -15,77 +19,120 @@ import java.text.NumberFormat;
  *
  * @author carcassi
  */
-public interface Display {
+public abstract class Display {
 
     /**
-     * Lowest possible value to be displayed. Never null.
-     *
-     * @return lower display limit
-     */
-    Double getLowerDisplayLimit();
-
-    /**
-     * Lowest possible value (included). Never null.
+     * The range for the value when displayed.
      * 
-     * @return lower limit
+     * @return the display range; can be null
      */
-    Double getLowerCtrlLimit();
+    public abstract Range getDisplayRange();
 
     /**
-     * Lowest value before the alarm region. Never null.
-     *
-     * @return lower alarm limit
+     * The range for the alarm associated to the value.
+     * 
+     * @return the alarm range; can be null
      */
-    Double getLowerAlarmLimit();
+    public abstract Range getAlarmRange();
 
     /**
-     * Lowest value before the warning region. Never null.
-     *
-     * @return lower warning limit
+     * The range for the warning associated to the value.
+     * 
+     * @return the warning range; can be null
      */
-    Double getLowerWarningLimit();
+    public abstract Range getWarningRange();
 
     /**
-     * String representation of the units using for all values.
+     * The range used for changing the value.
+     * 
+     * @return the control range; can be null
+     */
+    public abstract Range getControlRange();
+
+    /**
+     * String representation of the unit using for all values.
      * Never null. If not available, returns the empty String.
      *
-     * @return units
+     * @return unit
      */
-    String getUnits();
+    public abstract String getUnit();
 
     /**
      * Returns a NumberFormat that creates a String with just the value (no units).
      * Format is locale independent and should be used for all values (values and
-     * lower/upper limits). Never null.
+     * min/max of the ranges). Never null.
      *
      * @return the default format for all values
      */
-    NumberFormat getFormat();
+    public abstract NumberFormat getFormat();
 
-    /**
-     * Highest value before the warning region. Never null.
-     *
-     * @return upper warning limit
-     */
-    Double getUpperWarningLimit();
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        
+	if (obj instanceof Display) {
+            Display other = (Display) obj;
+        
+            return Objects.equals(getFormat(), other.getFormat()) &&
+                Objects.equals(getUnit(), other.getUnit()) &&
+                Objects.equals(getDisplayRange(), other.getDisplayRange()) &&
+                Objects.equals(getAlarmRange(), other.getAlarmRange()) &&
+                Objects.equals(getWarningRange(), other.getWarningRange()) &&
+                Objects.equals(getControlRange(), other.getControlRange());
+        }
+        
+        return false;
+    }
 
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 59 * hash + Objects.hashCode(getFormat());
+        hash = 59 * hash + Objects.hashCode(getUnit());
+        hash = 59 * hash + Objects.hashCode(getDisplayRange());
+        hash = 59 * hash + Objects.hashCode(getAlarmRange());
+        hash = 59 * hash + Objects.hashCode(getWarningRange());
+        hash = 59 * hash + Objects.hashCode(getControlRange());
+        return hash;
+    }
+    
     /**
-     * Highest value before the alarm region. Never null.
-     *
-     * @return upper alarm limit
+     * Creates a new display
+     * 
+     * @param lowerDisplayLimit lower display limit
+     * @param lowerAlarmLimit lower alarm limit
+     * @param lowerWarningLimit lower warning limit
+     * @param units the units
+     * @param numberFormat the formatter
+     * @param upperWarningLimit the upper warning limit
+     * @param upperAlarmLimit the upper alarm limit
+     * @param upperDisplayLimit the upper display limit
+     * @param lowerCtrlLimit the lower control limit
+     * @param upperCtrlLimit the upper control limit
+     * @return the new display
      */
-    Double getUpperAlarmLimit();
-
+    public static Display create(final Double lowerDisplayLimit, final Double lowerAlarmLimit, final Double lowerWarningLimit,
+            final String units, final NumberFormat numberFormat, final Double upperWarningLimit,
+            final Double upperAlarmLimit, final Double upperDisplayLimit,
+            final Double lowerCtrlLimit, final Double upperCtrlLimit) {
+        return new IDisplay(Ranges.range(lowerDisplayLimit, upperDisplayLimit),
+                Ranges.range(lowerWarningLimit, upperWarningLimit),
+                Ranges.range(lowerAlarmLimit, upperAlarmLimit),
+                Ranges.range(lowerCtrlLimit, upperCtrlLimit), units, numberFormat);
+    }
+    
+    private static final Display displayNone = create(Double.NaN, Double.NaN, 
+            Double.NaN, "", NumberFormats.toStringFormat(), Double.NaN, Double.NaN,
+            Double.NaN, Double.NaN, Double.NaN);
+    
     /**
-     * Highest possible value (included). Never null.
-     * @return upper limit
+     * Empty display information.
+     * 
+     * @return no display
      */
-    Double getUpperCtrlLimit();
-
-    /**
-     * Highest possible value to be displayed. Never null.
-     *
-     * @return upper display limit
-     */
-    Double getUpperDisplayLimit();
+    public static Display none() {
+        return displayNone;
+    }
 }

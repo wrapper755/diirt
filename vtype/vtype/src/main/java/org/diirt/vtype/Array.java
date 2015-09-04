@@ -4,6 +4,7 @@
  */
 package org.diirt.vtype;
 
+import org.diirt.vtype.*;
 import java.util.List;
 import org.diirt.util.array.CollectionNumbers;
 import org.diirt.util.array.ListInt;
@@ -28,7 +29,7 @@ import org.diirt.util.array.ListNumber;
  * 
  * @author carcassi
  */
-public interface Array {
+public abstract class Array extends VType {
 
     /**
      * Return the object containing the array data.
@@ -44,7 +45,7 @@ public interface Array {
      * 
      * @return the array data
      */
-    Object getData();
+    public abstract Object getData();
 
     /**
      * The shape of the multidimensional array.
@@ -56,5 +57,5 @@ public interface Array {
      * 
      * @return the dimension sizes
      */
-    ListInt getSizes();
+    public abstract ListInt getSizes();
 }

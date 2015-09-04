@@ -9,13 +9,18 @@ package org.diirt.vtype;
  *
  * @author carcassi
  */
-class IVInt extends IVNumeric implements VInt {
+class IVInt extends VInt {
     
     private final Integer value;
+    private final Alarm alarm;
+    private final Time time;
+    private final Display display;
 
     IVInt(Integer value, Alarm alarm, Time time, Display display) {
-        super(alarm, time, display);
         this.value = value;
+        this.alarm = alarm;
+        this.time = time;
+        this.display = display;
     }
 
     @Override
@@ -24,8 +29,18 @@ class IVInt extends IVNumeric implements VInt {
     }
 
     @Override
-    public String toString() {
-        return VTypeToString.toString(this);
+    public Alarm getAlarm() {
+        return alarm;
+    }
+
+    @Override
+    public Time getTime() {
+        return time;
+    }
+
+    @Override
+    public Display getDisplay() {
+        return display;
     }
 
 }

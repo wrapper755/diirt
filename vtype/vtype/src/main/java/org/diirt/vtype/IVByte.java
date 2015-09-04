@@ -9,13 +9,18 @@ package org.diirt.vtype;
  *
  * @author carcassi
  */
-class IVByte extends IVNumeric implements VByte {
+class IVByte extends VByte {
     
     private final Byte value;
+    private final Alarm alarm;
+    private final Time time;
+    private final Display display;
 
     IVByte(Byte value, Alarm alarm, Time time, Display display) {
-        super(alarm, time, display);
         this.value = value;
+        this.alarm = alarm;
+        this.time = time;
+        this.display = display;
     }
 
     @Override
@@ -24,8 +29,18 @@ class IVByte extends IVNumeric implements VByte {
     }
 
     @Override
-    public String toString() {
-        return VTypeToString.toString(this);
+    public Alarm getAlarm() {
+        return alarm;
+    }
+
+    @Override
+    public Time getTime() {
+        return time;
+    }
+
+    @Override
+    public Display getDisplay() {
+        return display;
     }
 
 }

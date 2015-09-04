@@ -5,16 +5,20 @@
 package org.diirt.vtype;
 
 /**
+ * Immutable VString implementation.
  *
  * @author carcassi
  */
-class IVString extends IVMetadata implements VString {
-
+class IVString extends VString {
+    
     private final String value;
+    private final Alarm alarm;
+    private final Time time;
 
-    public IVString(String value, Alarm alarm, Time time) {
-        super(alarm, time);
+    IVString(String value, Alarm alarm, Time time) {
         this.value = value;
+        this.alarm = alarm;
+        this.time = time;
     }
 
     @Override
@@ -23,8 +27,13 @@ class IVString extends IVMetadata implements VString {
     }
 
     @Override
-    public String toString() {
-        return VTypeToString.toString(this);
+    public Alarm getAlarm() {
+        return alarm;
+    }
+
+    @Override
+    public Time getTime() {
+        return time;
     }
 
 }

@@ -9,11 +9,25 @@ package org.diirt.vtype;
  *
  * @author carcassi
  */
-public interface VString extends Scalar, Alarm, Time, VType {
+public abstract class VString extends Scalar {
     
     /**
      * {@inheritDoc }
      */
     @Override
-    String getValue();
+    public abstract String getValue();
+    
+    
+    /**
+     * Creates a new VString.
+     * 
+     * @param value the string value
+     * @param alarm the alarm
+     * @param time the time
+     * @return the new value
+     */
+    public static VString create(final String value, final Alarm alarm, final Time time) {
+        return new IVString(value, alarm, time);
+    }
+    
 }

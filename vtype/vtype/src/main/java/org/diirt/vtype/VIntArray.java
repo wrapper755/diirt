@@ -4,15 +4,19 @@
  */
 package org.diirt.vtype;
 
+import org.diirt.util.array.ListDouble;
 import org.diirt.util.array.ListInt;
 
 /**
- * Int array with alarm, timestamp, display and control information.
- *
+ * Scalar int array with alarm, timestamp, display and control information.
+ * 
  * @author carcassi
  */
-public interface VIntArray extends VNumberArray, VType {
+public abstract class VIntArray extends VNumberArray {
     
+    /**
+     * {@inheritDoc }
+     */
     @Override
-    ListInt getData();
+    public abstract ListInt getData();
 }

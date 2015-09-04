@@ -9,4 +9,4 @@
  * This package contains the definitions of the standard types used in
  * diirt.
  */
-package org.diirt.vtype.next;
+package org.diirt.vtype;

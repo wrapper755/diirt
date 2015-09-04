@@ -5,17 +5,22 @@
 package org.diirt.vtype;
 
 /**
- * Immutable VInt implementation.
+ * Immutable VLong implementation.
  *
  * @author carcassi
  */
-class IVLong extends IVNumeric implements VLong {
+class IVLong extends VLong {
     
     private final Long value;
+    private final Alarm alarm;
+    private final Time time;
+    private final Display display;
 
     IVLong(Long value, Alarm alarm, Time time, Display display) {
-        super(alarm, time, display);
         this.value = value;
+        this.alarm = alarm;
+        this.time = time;
+        this.display = display;
     }
 
     @Override
@@ -24,8 +29,18 @@ class IVLong extends IVNumeric implements VLong {
     }
 
     @Override
-    public String toString() {
-        return VTypeToString.toString(this);
+    public Alarm getAlarm() {
+        return alarm;
+    }
+
+    @Override
+    public Time getTime() {
+        return time;
+    }
+
+    @Override
+    public Display getDisplay() {
+        return display;
     }
 
 }

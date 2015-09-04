@@ -6,7 +6,7 @@ package org.diirt.vtype;
 
 /**
  * Basic type definition for all scalar types. {@link #getValue()} never returns
- * null, even if the channel never connected. One <b>must always look</b>
+ * null. One <b>must always look</b>
  * at the alarm severity to be able to correctly interpret the value.
  * <p>
  * As of 1.1, this class is not a generic type. This is due to a bug in 1.6
@@ -14,12 +14,12 @@ package org.diirt.vtype;
  *
  * @author carcassi
  */
-public interface Scalar {
+public abstract class Scalar extends VType implements AlarmProvider, TimeProvider {
 
     /**
      * Returns the value. Never null.
      *
      * @return the value
      */
-    Object getValue();
+    public abstract Object getValue();
 }

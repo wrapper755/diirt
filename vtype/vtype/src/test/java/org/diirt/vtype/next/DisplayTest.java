@@ -6,8 +6,12 @@ package org.diirt.vtype.next;
 
 import org.diirt.util.stats.Ranges;
 import org.diirt.util.text.NumberFormats;
+import org.diirt.vtype.Display;
+
 import static org.hamcrest.CoreMatchers.equalTo;
+
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 import static org.hamcrest.Matchers.*;
 

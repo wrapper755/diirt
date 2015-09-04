@@ -15,7 +15,8 @@ import java.util.List;
  * and ordering. In case additional AlarmSeverity values are added in the future,
  * which is very unlikely, they will be added in order as well.
  * <p>
- * One should always bear in mind that the alarm severity of the IOC is set on
+ * CA implementation note (should be in ca support):
+ * one should always bear in mind that the alarm severity of the IOC is set on
  * the record, and not on the individual channel. If  one is not connecting
  * to the value field of the record, the severity does not reflect the state
  * of that field.

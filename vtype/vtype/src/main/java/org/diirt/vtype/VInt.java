@@ -11,10 +11,24 @@ package org.diirt.vtype;
  * 
  * @author carcassi
  */
-public interface VInt extends VNumber, VType {
+public abstract class VInt extends VNumber {
+    
     /**
      * {@inheritDoc }
      */
     @Override
-    Integer getValue();
+    public abstract Integer getValue();
+    
+    /**
+     * Creates a new VInt.
+     * 
+     * @param value the value
+     * @param alarm the alarm
+     * @param time the time
+     * @param display the display
+     * @return the new value
+     */
+    public static VInt create(final Integer value, final Alarm alarm, final Time time, final Display display) {
+        return new IVInt(value, alarm, time, display);
+    }
 }

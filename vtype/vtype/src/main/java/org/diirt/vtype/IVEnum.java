@@ -4,29 +4,31 @@
  */
 package org.diirt.vtype;
 
-import java.util.List;
-
 /**
+ * Immutable VEnum implementation.
  *
  * @author carcassi
  */
-class IVEnum extends IVMetadata implements VEnum {
+class IVEnum extends VEnum {
     
+    private final Alarm alarm;
+    private final Time time;
     private final int index;
-    private final List<String> labels;
+    private final EnumMetaData metadata;
 
-    public IVEnum(int index, List<String> labels, Alarm alarm, Time time) {
-        super(alarm, time);
-        if (index < 0 || index >= labels.size()) {
+    IVEnum(int index, EnumMetaData metadata, Alarm alarm, Time time) {
+        if (index < 0 || index >= metadata.getLabels().size()) {
             throw new IndexOutOfBoundsException("VEnum index must be within the label range");
         }
         this.index = index;
-        this.labels = labels;
+        this.metadata = metadata;
+        this.alarm = alarm;
+        this.time = time;
     }
 
     @Override
     public String getValue() {
-        return labels.get(index);
+        return metadata.getLabels().get(index);
     }
 
     @Override
@@ -35,13 +37,18 @@ class IVEnum extends IVMetadata implements VEnum {
     }
 
     @Override
-    public List<String> getLabels() {
-        return labels;
+    public EnumMetaData getMetaData() {
+        return metadata;
     }
 
     @Override
-    public String toString() {
-        return VTypeToString.toString(this);
+    public Alarm getAlarm() {
+        return alarm;
     }
-    
+
+    @Override
+    public Time getTime() {
+        return time;
+    }
+
 }

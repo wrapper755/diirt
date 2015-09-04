@@ -5,7 +5,12 @@
 package org.diirt.vtype.next;
 
 import java.util.Arrays;
+
+import org.diirt.vtype.Alarm;
+import org.diirt.vtype.AlarmSeverity;
+import org.diirt.vtype.VType;
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 import static org.hamcrest.Matchers.*;
 

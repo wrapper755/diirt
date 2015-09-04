@@ -11,10 +11,24 @@ package org.diirt.vtype;
  * 
  * @author carcassi
  */
-public interface VShort extends VNumber, VType {
+public abstract class VShort extends VNumber {
+    
     /**
      * {@inheritDoc }
      */
     @Override
-    Short getValue();
+    public abstract Short getValue();
+    
+    /**
+     * Creates a new VShort.
+     * 
+     * @param value the value
+     * @param alarm the alarm
+     * @param time the time
+     * @param display the display
+     * @return the new value
+     */
+    public static VShort create(final Short value, final Alarm alarm, final Time time, final Display display) {
+        return new IVShort(value, alarm, time, display);
+    }
 }

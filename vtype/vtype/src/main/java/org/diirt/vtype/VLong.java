@@ -11,10 +11,24 @@ package org.diirt.vtype;
  * 
  * @author carcassi
  */
-public interface VLong extends VNumber, VType {
+public abstract class VLong extends VNumber {
+    
     /**
      * {@inheritDoc }
      */
     @Override
-    Long getValue();
+    public abstract Long getValue();
+    
+    /**
+     * Creates a new VLong.
+     * 
+     * @param value the value
+     * @param alarm the alarm
+     * @param time the time
+     * @param display the display
+     * @return the new value
+     */
+    public static VLong create(final Long value, final Alarm alarm, final Time time, final Display display) {
+        return new IVLong(value, alarm, time, display);
+    }
 }

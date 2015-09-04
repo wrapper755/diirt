@@ -4,32 +4,53 @@
  */
 package org.diirt.vtype;
 
-import java.util.List;
 import org.diirt.util.array.ListDouble;
 import org.diirt.util.array.ListInt;
 
 /**
+ * Immutable VDoubleArray implementation.
  *
  * @author carcassi
  */
-class IVDoubleArray extends IVNumberArray implements VDoubleArray {
-
+class IVDoubleArray extends VDoubleArray {
+    
     private final ListDouble data;
+    private final ListInt sizes;
+    private final Alarm alarm;
+    private final Time time;
+    private final Display display;
 
-    public IVDoubleArray(ListDouble data, ListInt sizes,
-            Alarm alarm, Time time, Display display) {
-        this(data, sizes, null, alarm, time, display);
+    IVDoubleArray(ListDouble data, ListInt sizes, Alarm alarm, Time time, Display display) {
+        this.data = data;
+        this.alarm = alarm;
+        this.time = time;
+        this.display = display;
+        this.sizes = sizes;
     }
 
-    public IVDoubleArray(ListDouble data, ListInt sizes, List<ArrayDimensionDisplay> dimDisplay,
-            Alarm alarm, Time time, Display display) {
-        super(sizes, dimDisplay, alarm, time, display);
-        this.data = data;
+    @Override
+    public ListInt getSizes() {
+        return sizes;
     }
 
     @Override
     public ListDouble getData() {
         return data;
+    }
+
+    @Override
+    public Alarm getAlarm() {
+        return alarm;
+    }
+
+    @Override
+    public Time getTime() {
+        return time;
+    }
+
+    @Override
+    public Display getDisplay() {
+        return display;
     }
 
 }

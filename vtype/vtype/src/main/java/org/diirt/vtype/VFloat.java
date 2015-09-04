@@ -11,10 +11,24 @@ package org.diirt.vtype;
  * 
  * @author carcassi
  */
-public interface VFloat extends VNumber, VType {
+public abstract class VFloat extends VNumber {
+    
     /**
      * {@inheritDoc }
      */
     @Override
-    Float getValue();
+    public abstract Float getValue();
+    
+    /**
+     * Creates a new VFloat.
+     * 
+     * @param value the value
+     * @param alarm the alarm
+     * @param time the time
+     * @param display the display
+     * @return the new value
+     */
+    public static VFloat create(final Float value, final Alarm alarm, final Time time, final Display display) {
+        return new IVFloat(value, alarm, time, display);
+    }
 }

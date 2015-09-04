@@ -5,7 +5,14 @@
 package org.diirt.vtype.next;
 
 import java.time.Instant;
+
+import org.diirt.vtype.Alarm;
+import org.diirt.vtype.AlarmSeverity;
+import org.diirt.vtype.Display;
+import org.diirt.vtype.Time;
+import org.diirt.vtype.VDouble;
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 import static org.hamcrest.Matchers.*;
 

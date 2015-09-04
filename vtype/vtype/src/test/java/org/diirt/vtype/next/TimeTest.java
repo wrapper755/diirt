@@ -6,8 +6,12 @@ package org.diirt.vtype.next;
 
 import java.time.Duration;
 import java.time.Instant;
+
 import static org.hamcrest.CoreMatchers.equalTo;
+
+import org.diirt.vtype.Time;
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 import static org.hamcrest.Matchers.*;
 
