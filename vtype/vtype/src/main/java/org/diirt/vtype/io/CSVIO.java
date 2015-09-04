@@ -52,9 +52,9 @@ public class CSVIO {
 
             Alarm alarm = ValueUtil.alarmOf(value);
             if (alarm != null) {
-                writer.append(alarm.getAlarmSeverity().name())
+                writer.append(alarm.getSeverity().name())
                         .append(" ")
-                        .append(alarm.getAlarmName());
+                        .append(alarm.getName());
             }
 
             if (value instanceof VNumber) {
