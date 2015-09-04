@@ -11,8 +11,24 @@ import org.diirt.util.array.ListShort;
  *
  * @author carcassi
  */
-public interface VShortArray extends VNumberArray, VType {
+public abstract class VShortArray extends VNumberArray {
     
+	  /**
+     * {@inheritDoc }
+     */
     @Override
-    ListShort getData();
+    public abstract ListShort getData();
+    
+    /**
+     * Creates a new VShortArray.
+     * 
+     * @param data the value
+     * @param alarm the alarm
+     * @param time the time
+     * @param display the display
+     * @return the new value
+     */
+    public static VShortArray create(final ListShort data, final Alarm alarm, final Time time, final Display display) {
+        return new IVShortArray(data, null, alarm, time, display);
+    }
 }

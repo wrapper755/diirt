@@ -11,8 +11,24 @@ import org.diirt.util.array.ListLong;
  *
  * @author carcassi
  */
-public interface VLongArray extends VNumberArray, VType {
-    
+public abstract class VLongArray extends VNumberArray {
+	  
+    /**
+     * {@inheritDoc }
+     */
     @Override
-    ListLong getData();
+    public abstract ListLong getData();
+    
+    /**
+     * Creates a new VLongArray.
+     * 
+     * @param data the value
+     * @param alarm the alarm
+     * @param time the time
+     * @param display the display
+     * @return the new value
+     */
+    public static VLongArray create(final ListLong data, final Alarm alarm, final Time time, final Display display) {
+        return new IVLongArray(data, null, alarm, time, display);
+    }
 }

@@ -4,8 +4,13 @@
  */
 package org.diirt.vtype;
 
+import org.diirt.util.array.ListByte;
 import org.diirt.util.array.ListDouble;
+import org.diirt.util.array.ListFloat;
+import org.diirt.util.array.ListInt;
+import org.diirt.util.array.ListLong;
 import org.diirt.util.array.ListNumber;
+import org.diirt.util.array.ListShort;
 
 /**
  * Numeric array with alarm, timestamp, display and control information.
@@ -61,18 +66,18 @@ public abstract class VNumberArray extends Array implements AlarmProvider, TimeP
     public static VNumberArray create(ListNumber data, Alarm alarm, Time time, Display display){
         if (data instanceof ListDouble) {
             return VDoubleArray.create((ListDouble) data, alarm, time, display);
-//        } else if (value instanceof Float) {
-//            return newVFloat((Float) value, alarm, time, display);
-//        } else if (value instanceof Long) {
-//            return newVLong((Long) value, alarm, time, display);
-//        } else if (value instanceof Integer) {
-//            return VInt.create((Integer) value, alarm, time, display);
-//        } else if (value instanceof Short) {
-//            return newVShort((Short) value, alarm, time, display);
-//        } else if (value instanceof Byte) {
-//            return newVByte((Byte) value, alarm, time, display);
+        } else if (data instanceof ListFloat) {
+            return VFloatArray.create((ListFloat) data, alarm, time, display);
+        } else if (data instanceof ListLong) {
+            return VLongArray.create((ListLong) data, alarm, time, display);
+        } else if (data instanceof ListInt) {
+            return VIntArray.create((ListInt) data, alarm, time, display);
+        } else if (data instanceof ListShort) {
+            return VShortArray.create((ListShort) data, alarm, time, display);
+        } else if (data instanceof ListByte) {
+            return VByteArray.create((ListByte) data, alarm, time, display);
         }
 	throw new UnsupportedOperationException();
     }
-    
+
 }
