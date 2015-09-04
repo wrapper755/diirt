@@ -11,12 +11,24 @@ import org.diirt.util.array.ListBoolean;
  *
  * @author carcassi
  */
-public interface VBooleanArray extends Array, Alarm, Time, VType {
+public abstract class VBooleanArray extends Array implements AlarmProvider, TimeProvider {
     
     /**
      * {@inheritDoc }
-     * @return the data
      */
     @Override
-    ListBoolean getData();
+    public abstract ListBoolean getData();
+    
+    /**
+     * Creates a new VBooleanArray.
+     * 
+     * @param data the value
+     * @param alarm the alarm
+     * @param time the time
+     * @param display the display
+     * @return the new value
+     */
+    public static VBooleanArray create(final ListBoolean data, final Alarm alarm, final Time time) {
+        return new IVBooleanArray(data, null, alarm, time);
+    }
 }

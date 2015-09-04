@@ -9,11 +9,23 @@ package org.diirt.vtype;
  *
  * @author carcassi
  */
-public interface VBoolean extends Scalar, Alarm, Time, VType {
+public abstract class VBoolean extends Scalar {
     
     /**
      * {@inheritDoc }
      */
     @Override
-    Boolean getValue();
+    public abstract Boolean getValue();
+
+    /**
+     * Creates a new VBoolean.
+     * 
+     * @param value the value
+     * @param alarm the alarm
+     * @param time the time
+     * @return the new value
+     */
+    public static VBoolean create(final Boolean value, final Alarm alarm, final Time time) {
+        return new IVBoolean(value, alarm, time);
+    }
 }

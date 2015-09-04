@@ -9,13 +9,16 @@ package org.diirt.vtype;
  * 
  * @author carcassi
  */
-class IVBoolean extends IVMetadata implements VBoolean {
+class IVBoolean extends VBoolean {
+    
+    private final Boolean value;
+    private final Alarm alarm;
+    private final Time time;
 
-    private final boolean value;
-
-    public IVBoolean(boolean value, Alarm alarm, Time time) {
-        super(alarm, time);
+    IVBoolean(Boolean value, Alarm alarm, Time time) {
         this.value = value;
+        this.alarm = alarm;
+        this.time = time;
     }
 
     @Override
@@ -24,8 +27,13 @@ class IVBoolean extends IVMetadata implements VBoolean {
     }
 
     @Override
-    public String toString() {
-        return VTypeToString.toString(this);
+    public Alarm getAlarm() {
+        return alarm;
+    }
+
+    @Override
+    public Time getTime() {
+        return time;
     }
 
 }

@@ -4,7 +4,6 @@
  */
 package org.diirt.vtype;
 
-import java.util.List;
 import org.diirt.util.array.ListBoolean;
 import org.diirt.util.array.ListInt;
 
@@ -12,20 +11,18 @@ import org.diirt.util.array.ListInt;
  *
  * @author carcassi
  */
-class IVBooleanArray extends IVMetadata implements VBooleanArray {
+class IVBooleanArray extends VBooleanArray {
     
-    private final ListInt sizes;
     private final ListBoolean data;
+    private final ListInt sizes;
+    private final Alarm alarm;
+    private final Time time;
 
-    public IVBooleanArray(ListBoolean data, ListInt sizes, Alarm alarm, Time time) {
-        super(alarm, time);
+    IVBooleanArray(ListBoolean data, ListInt sizes, Alarm alarm, Time time) {
         this.data = data;
+        this.alarm = alarm;
+        this.time = time;
         this.sizes = sizes;
-    }
-
-    @Override
-    public ListBoolean getData() {
-        return data;
     }
 
     @Override
@@ -34,8 +31,18 @@ class IVBooleanArray extends IVMetadata implements VBooleanArray {
     }
 
     @Override
-    public String toString() {
-        return VTypeToString.toString(this);
+    public ListBoolean getData() {
+        return data;
     }
-    
+
+    @Override
+    public Alarm getAlarm() {
+        return alarm;
+    }
+
+    @Override
+    public Time getTime() {
+        return time;
+    }
+
 }
