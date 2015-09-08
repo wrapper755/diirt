@@ -19,11 +19,11 @@ public class VTypeToString {
     }
     
     private static void appendAlarm(StringBuilder builder, Alarm alarm) {
-        if (!alarm.getAlarmSeverity().equals(AlarmSeverity.NONE)) {
+        if (!alarm.getSeverity().equals(AlarmSeverity.NONE)) {
             builder.append(", ")
-                    .append(alarm.getAlarmSeverity())
+                    .append(alarm.getSeverity())
                     .append("(")
-                    .append(alarm.getAlarmName())
+                    .append(alarm.getName())
                     .append(")");
         }
     }
@@ -39,7 +39,7 @@ public class VTypeToString {
             return "NONE";
         }
         
-        return alarm.getAlarmSeverity() + "(" + alarm.getAlarmName() + ")";
+        return alarm.getSeverity() + "(" + alarm.getName() + ")";
     }
 
     /**
@@ -53,7 +53,7 @@ public class VTypeToString {
             return "null";
         }
         
-        return timeFormat.format(time.getTimestamp()) + "(" + time.getTimeUserTag()+ ")";
+        return timeFormat.format(time.getTimestamp()) + "(" + time.getUserTag()+ ")";
     }
     
     private static final TimestampFormat timeFormat = new TimestampFormat("yyyy/MM/dd HH:mm:ss.SSS");
@@ -74,8 +74,8 @@ public class VTypeToString {
         builder.append(type.getSimpleName())
                 .append('[')
                 .append(vNumber.getValue());
-        appendAlarm(builder, vNumber);
-        appendTime(builder, vNumber);
+        appendAlarm(builder, vNumber.getAlarm());
+        appendTime(builder, vNumber.getTime());
         builder.append(']');
         return builder.toString();
     }
@@ -92,8 +92,8 @@ public class VTypeToString {
         builder.append(type.getSimpleName())
                 .append("[")
                 .append(vString.getValue());
-        appendAlarm(builder, vString);
-        appendTime(builder, vString);
+        appendAlarm(builder, vString.getAlarm());
+        appendTime(builder, vString.getTime());
         builder.append(']');
         return builder.toString();
     }
@@ -110,8 +110,8 @@ public class VTypeToString {
         builder.append(type.getSimpleName())
                 .append("[")
                 .append(vBoolean.getValue());
-        appendAlarm(builder, vBoolean);
-        appendTime(builder, vBoolean);
+        appendAlarm(builder, vBoolean.getAlarm());
+        appendTime(builder, vBoolean.getTime());
         builder.append(']');
         return builder.toString();
     }
@@ -131,8 +131,8 @@ public class VTypeToString {
                 .append("(")
                 .append(vEnum.getIndex())
                 .append(")");
-        appendAlarm(builder, vEnum);
-        appendTime(builder, vEnum);
+        appendAlarm(builder, vEnum.getAlarm());
+        appendTime(builder, vEnum.getTime());
         builder.append(']');
         return builder.toString();
     }
@@ -157,8 +157,8 @@ public class VTypeToString {
         builder.append(format.format(vNumberArray));
         builder.append(", size ")
                 .append(vNumberArray.getData().size());
-        appendAlarm(builder, vNumberArray);
-        appendTime(builder, vNumberArray);
+        appendAlarm(builder, vNumberArray.getAlarm());
+        appendTime(builder, vNumberArray.getTime());
         builder.append(']');
         return builder.toString();
     }
@@ -177,8 +177,8 @@ public class VTypeToString {
         builder.append(format.format(vStringArray));
         builder.append(", size ")
                 .append(vStringArray.getData().size());
-        appendAlarm(builder, vStringArray);
-        appendTime(builder, vStringArray);
+        appendAlarm(builder, vStringArray.getAlarm());
+        appendTime(builder, vStringArray.getTime());
         builder.append(']');
         return builder.toString();
     }
@@ -197,8 +197,8 @@ public class VTypeToString {
         builder.append(format.format(vBooleanArray));
         builder.append(", size ")
                 .append(vBooleanArray.getData().size());
-        appendAlarm(builder, vBooleanArray);
-        appendTime(builder, vBooleanArray);
+        appendAlarm(builder, vBooleanArray.getAlarm());
+        appendTime(builder, vBooleanArray.getTime());
         builder.append(']');
         return builder.toString();
     }
@@ -217,8 +217,8 @@ public class VTypeToString {
         builder.append(format.format(vEnumArray));
         builder.append(", size ")
                 .append(vEnumArray.getData().size());
-        appendAlarm(builder, vEnumArray);
-        appendTime(builder, vEnumArray);
+        appendAlarm(builder, vEnumArray.getAlarm());
+        appendTime(builder, vEnumArray.getTime());
         builder.append(']');
         return builder.toString();
     }

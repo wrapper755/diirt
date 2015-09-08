@@ -552,8 +552,8 @@ public class VTableFactory {
         for (int i = 0; i < values.size(); i++) {
             VNumber vNumber = (VNumber) values.get(i);
             data[i] = vNumber.getValue().doubleValue();
-            severity.add(vNumber.getAlarmSeverity().name());
-            status.add(vNumber.getAlarmName());
+            severity.add(vNumber.getAlarm().getSeverity().name());
+            status.add(vNumber.getAlarm().getName());
         }
         
         if (names == null) {

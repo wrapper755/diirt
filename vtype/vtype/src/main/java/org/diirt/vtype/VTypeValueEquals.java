@@ -33,8 +33,8 @@ public class VTypeValueEquals {
 	    return false;
 	}
         
-        return alarm1.getAlarmSeverity().equals(alarm2.getAlarmSeverity()) &&
-                alarm1.getAlarmName().equals(alarm2.getAlarmName());
+        return alarm1.getSeverity().equals(alarm2.getSeverity()) &&
+                alarm1.getName().equals(alarm2.getName());
     }
 
     /**
@@ -55,8 +55,8 @@ public class VTypeValueEquals {
 	}
         
         return Objects.equals(time1.getTimestamp(), time2.getTimestamp()) &&
-                Objects.equals(time1.getTimeUserTag(), time2.getTimeUserTag()) &&
-                time1.isTimeValid() == time2.isTimeValid();
+                Objects.equals(time1.getUserTag(), time2.getUserTag()) &&
+                time1.isValid() == time2.isValid();
     }
 
     /**
@@ -155,7 +155,7 @@ public class VTypeValueEquals {
     }
 
     public static boolean valueEquals(VEnum enum1, VEnum enum2) {
-        return enum1.getValue().equals(enum2.getValue()) && enum1.getLabels().equals(enum2.getLabels());
+        return enum1.getValue().equals(enum2.getValue()) && enum1.getMetaData().getLabels().equals(enum2.getMetaData().getLabels());
     }
 
     public static boolean valueEquals(VEnumArray enum1, VEnumArray enum2) {

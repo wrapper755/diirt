@@ -6,21 +6,24 @@ package org.diirt.vtype;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.diirt.util.array.ListInt;
+import org.diirt.util.array.ListLong;
 
 /**
  *
  * @author carcassi
  */
-class IVEnumArray extends IVMetadata implements VEnumArray {
+class IVEnumArray extends VEnumArray {
     
     private final ListInt indexes;
     private final List<String> labels;
     private final ListInt sizes;
     private final List<String> array;
+    private final Alarm alarm;
+    private final Time time;
 
     public IVEnumArray(ListInt indexes, List<String> labels, ListInt sizes, Alarm alarm, Time time) {
-        super(alarm, time);
         List<String> tempArray = new ArrayList<>(indexes.size());
         for (int i = 0; i < indexes.size(); i++) {
             int index = indexes.getInt(i);
@@ -33,6 +36,8 @@ class IVEnumArray extends IVMetadata implements VEnumArray {
         this.indexes = indexes;
         this.labels = labels;
         this.sizes = sizes;
+        this.alarm = alarm;
+        this.time = time;               
     }
 
     @Override
@@ -58,6 +63,16 @@ class IVEnumArray extends IVMetadata implements VEnumArray {
     @Override
     public String toString() {
         return VTypeToString.toString(this);
+    }
+
+    @Override
+    public Alarm getAlarm() {
+        return alarm;
+    }
+
+    @Override
+    public Time getTime() {
+        return time;
     }
     
 }

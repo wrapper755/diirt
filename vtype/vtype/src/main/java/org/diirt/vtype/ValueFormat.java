@@ -151,7 +151,7 @@ public abstract class ValueFormat extends Format {
             return parseString(source);
         }
         if (reference instanceof VEnum) {
-            return parseEnum(source, ((VEnum) reference).getLabels());
+            return parseEnum(source, ((VEnum) reference).getMetaData().getLabels());
         }
         if (reference instanceof VDoubleArray) {
             return parseDoubleArray(source);
