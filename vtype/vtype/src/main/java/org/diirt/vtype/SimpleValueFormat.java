@@ -39,7 +39,7 @@ public class SimpleValueFormat extends ValueFormat {
             return toAppendTo;
         }
 
-        if (scalar instanceof Display && nf(scalar) != null) {
+        if (scalar instanceof DisplayProvider && nf(scalar) != null) {
             NumberFormat f = nf(scalar);
             return f.format(scalar.getValue(), toAppendTo, pos);
         }

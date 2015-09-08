@@ -19,12 +19,12 @@ import java.util.List;
  *
  * @author carcassi
  */
-public interface VExtendedAlarm extends VType {
+public abstract class VExtendedAlarm extends VType {
     
     /**
      * A single alarm condition that can be on or off.
      */
-    public interface AlarmCondition extends Alarm {
+    public interface AlarmCondition extends AlarmProvider {
         
         /**
          * Whether the alarm is on.
@@ -40,7 +40,7 @@ public interface VExtendedAlarm extends VType {
      * 
      * @return the alarm conditions
      */
-    public List<AlarmCondition> getConditions();
+    public abstract List<AlarmCondition> getConditions();
     
     
     /**
@@ -48,5 +48,5 @@ public interface VExtendedAlarm extends VType {
      * 
      * @return a message or null
      */
-    public String getMessage();
+    public abstract String getMessage();
 }

@@ -11,7 +11,7 @@ import org.diirt.util.array.ListNumber;
  *
  * @author carcassi
  */
-class IVTable implements VTable {
+class IVTable extends VTable {
     
     private final List<Class<?>> types;
     private final List<String> names;

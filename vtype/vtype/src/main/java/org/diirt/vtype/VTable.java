@@ -14,14 +14,14 @@ import org.diirt.util.array.ListNumber;
  *
  * @author carcassi
  */
-public interface VTable extends VType {
+public abstract class VTable extends VType {
 
     /**
      * The number of columns in the table.
      *
      * @return the number of columns
      */
-    int getColumnCount();
+    public abstract int getColumnCount();
     
     /**
      * The number of rows in the table.
@@ -33,7 +33,7 @@ public interface VTable extends VType {
      * 
      * @return the number of rows
      */
-    int getRowCount();
+    public abstract int getRowCount();
 
     /**
      * The type of the elements in the column. The column array will be
@@ -44,7 +44,7 @@ public interface VTable extends VType {
      * @param column the column index
      * @return the type of this column
      */
-    Class<?> getColumnType(int column);
+    public abstract Class<?> getColumnType(int column);
 
     /**
      * The name of the given column.
@@ -52,7 +52,7 @@ public interface VTable extends VType {
      * @param column the column index
      * @return the name of the column
      */
-    String getColumnName(int column);
+    public abstract String getColumnName(int column);
 
     /**
      * The data for the given column.
@@ -63,5 +63,5 @@ public interface VTable extends VType {
      * @param column the column index
      * @return the data of the column
      */
-    Object getColumnData(int column);
+    public abstract Object getColumnData(int column);
 }

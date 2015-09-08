@@ -18,40 +18,40 @@ package org.diirt.vtype;
  *
  * @author carcassi
  */
-public interface Statistics {
+public abstract class  Statistics extends VType{
 
     /**
      * The average. Never null.
      * 
      * @return the average
      */
-    Double getAverage();
+    abstract Double getAverage();
 
     /**
      * The standard deviation. Never null.
      * 
      * @return the standard deviation
      */
-    Double getStdDev();
+    abstract Double getStdDev();
 
     /**
      * The minimum value.
      * 
      * @return the minimum
      */
-    Double getMin();
+    abstract Double getMin();
 
     /**
      * The maximum value.
      *
      * @return the maximum
      */
-    Double getMax();
+    abstract Double getMax();
 
     /**
      * The number of samples.
      * 
      * @return the number of samples
      */
-    Integer getNSamples();
+    abstract Integer getNSamples();
 }

@@ -9,22 +9,28 @@ package org.diirt.vtype;
  *
  * @author carcassi
  */
-class IVStatistics extends IVNumeric implements VStatistics {
+class IVStatistics extends VStatistics {
 
-    private Double average;
-    private Double stdDev;
-    private Double min;
-    private Double max;
-    private Integer nSamples;
+    private final Double average;
+    private final Double stdDev;
+    private final Double min;
+    private final Double max;
+    private final Integer nSamples;
+    private final Alarm alarm;
+    private final Time time;
+    private final Display display;
+    
 
     public IVStatistics(Double average, Double stdDev, Double min, Double max, Integer nSamples,
             Alarm alarm, Time time, Display display) {
-        super(alarm, time, display);
         this.average = average;
         this.stdDev = stdDev;
         this.min = min;
         this.max = max;
         this.nSamples = nSamples;
+        this.alarm = alarm;
+        this.time = time;
+        this.display = display;
     }
 
 
@@ -52,6 +58,21 @@ class IVStatistics extends IVNumeric implements VStatistics {
     @Override
     public Integer getNSamples() {
         return nSamples;
+    }
+
+    @Override
+    public Alarm getAlarm() {
+        return alarm;
+    }
+
+    @Override
+    public Time getTime() {
+        return time;
+    }
+
+    @Override
+    public Display getDisplay() {
+        return display;
     }
 
 }

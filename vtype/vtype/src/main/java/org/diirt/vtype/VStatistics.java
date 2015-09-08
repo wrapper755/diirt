@@ -9,5 +9,6 @@ package org.diirt.vtype;
  *
  * @author carcassi
  */
-public interface VStatistics extends Statistics, Alarm, Time, Display, VType {
+public abstract class VStatistics extends Statistics implements AlarmProvider, TimeProvider, DisplayProvider {
+    
 }
