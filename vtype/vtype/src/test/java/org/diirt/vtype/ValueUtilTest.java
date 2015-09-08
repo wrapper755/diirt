@@ -14,13 +14,18 @@ import org.diirt.vtype.Time;
 import org.diirt.vtype.Display;
 import org.diirt.vtype.ValueFactory;
 import org.diirt.vtype.VNumberArray;
+
 import java.awt.Color;
+import java.time.Instant;
 import java.util.Arrays;
+
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.diirt.vtype.ValueFactory.*;
 import static org.diirt.vtype.ValueUtil.*;
+
 import org.diirt.util.text.NumberFormats;
 import org.diirt.util.array.ArrayDouble;
 import org.diirt.util.array.ArrayFloat;
@@ -168,7 +173,7 @@ public class ValueUtilTest {
         assertThat(ValueUtil.highestSeverityOf(Arrays.<Object>asList(none, minor), false), sameInstance(minor));
         assertThat(ValueUtil.highestSeverityOf(Arrays.<Object>asList(none, minor, otherMinor), false), sameInstance(minor));
         assertThat(ValueUtil.highestSeverityOf(Arrays.<Object>asList(null, minor, otherMinor), false), sameInstance(minor));
-        assertThat(ValueUtil.highestSeverityOf(Arrays.<Object>asList(null, minor, otherMinor), true).getAlarmSeverity(), sameInstance(AlarmSeverity.UNDEFINED));
+        assertThat(ValueUtil.highestSeverityOf(Arrays.<Object>asList(null, minor, otherMinor), true).getSeverity(), sameInstance(AlarmSeverity.UNDEFINED));
         assertThat(ValueUtil.highestSeverityOf(Arrays.<Object>asList(none, major, minor, otherMinor), false), sameInstance(major));
         assertThat(ValueUtil.highestSeverityOf(Arrays.<Object>asList(none, major, minor, otherMinor, invalid), false), sameInstance(invalid));
         assertThat(ValueUtil.highestSeverityOf(Arrays.<Object>asList(none, major, minor, undefined, invalid), false), sameInstance(undefined));
@@ -177,10 +182,10 @@ public class ValueUtilTest {
     
     @Test
     public void latestTimeOf1() {
-        Time time1 = newTime(Timestamp.of(12340000, 0));
-        Time time2 = newTime(Timestamp.of(12340000, 0));
-        Time time3 = newTime(Timestamp.of(12350000, 0));
-        Time time4 = newTime(Timestamp.of(12360000, 0));
+        Time time1 = newTime(Instant.ofEpochSecond(12340000, 0));
+        Time time2 = newTime(Instant.ofEpochSecond(12340000, 0));
+        Time time3 = newTime(Instant.ofEpochSecond(12350000, 0));
+        Time time4 = newTime(Instant.ofEpochSecond(12360000, 0));
         assertThat(ValueUtil.latestTimeOf(Arrays.<Object>asList(time1, time3)), sameInstance(time3));
         assertThat(ValueUtil.latestTimeOf(Arrays.<Object>asList(time3, time1)), sameInstance(time3));
         assertThat(ValueUtil.latestTimeOf(Arrays.<Object>asList(time1, time2)), sameInstance(time1));
@@ -190,11 +195,11 @@ public class ValueUtilTest {
     
     @Test
     public void latestValidTimeOrNewOf1() {
-        Time time1 = newTime(Timestamp.of(12340000, 0));
-        Time time2 = newTime(Timestamp.of(12340000, 0));
-        Time time3 = newTime(Timestamp.of(12350000, 0));
-        Time time4 = newTime(Timestamp.of(12360000, 0));
-        Time time5 = newTime(Timestamp.of(12370000, 0), 1, false);
+        Time time1 = newTime(Instant.ofEpochSecond(12340000, 0));
+        Time time2 = newTime(Instant.ofEpochSecond(12340000, 0));
+        Time time3 = newTime(Instant.ofEpochSecond(12350000, 0));
+        Time time4 = newTime(Instant.ofEpochSecond(12360000, 0));
+        Time time5 = newTime(Instant.ofEpochSecond(12370000, 0), 1, false);
         assertThat(ValueUtil.latestValidTimeOrNowOf(Arrays.<Object>asList(time1, time3)), sameInstance(time3));
         assertThat(ValueUtil.latestValidTimeOrNowOf(Arrays.<Object>asList(time3, time1)), sameInstance(time3));
         assertThat(ValueUtil.latestValidTimeOrNowOf(Arrays.<Object>asList(time1, time2)), sameInstance(time1));
@@ -206,7 +211,7 @@ public class ValueUtilTest {
     
     @Test
     public void subArray1() {
-        VNumberArray array = newVNumberArray(new ArrayDouble(1,2,3,4,5), newAlarm(AlarmSeverity.MINOR, "LOW"), newTime(Timestamp.of(123, 123)), displayNone());
+        VNumberArray array = newVNumberArray(new ArrayDouble(1,2,3,4,5), newAlarm(AlarmSeverity.MINOR, "LOW"), newTime(Instant.ofEpochSecond(123, 123)), displayNone());
         VNumberArray selection = subArray(array, 2);
         assertThat(selection.getData(), equalTo((ListNumber) new ArrayDouble(3)));
         assertThat(selection.getSizes(), equalTo((ListInt) new ArrayInt(1)));
