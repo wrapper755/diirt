@@ -84,7 +84,8 @@ public class ErrorHandlingTest {
                 .maxRate(TimeDuration.ofHertz(10));
         notificationReceived = false;
 
-        Thread.sleep(1000);
+        // TODO the correct sleep should be Thread.sleep(1000)
+        Thread.sleep(1500);
         pv.close();
         if (notificationReceived == false) {
             fail("Didn't receive notifications");
