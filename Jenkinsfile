@@ -9,7 +9,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'apt-get install maven'
+        sh 'apt-get install maven3'
         sh 'mvn clean verify'
       }
     }
